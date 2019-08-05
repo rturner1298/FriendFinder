@@ -1,18 +1,18 @@
-// Bring in friends data
+// Access Friends data
 var friendData = require('../data/friends.js');
 
 module.exports = function(app) {
-    // GET route for /api/friends returns friendData.
+    // GET route for /api/friends returning friendData.
     app.get('/api/friends', function(req, res) {
         res.json(friendData);
     });
-    // POST route for /api/friends takes in the new data and responds with the closest match.
+    // POST route for /api/friends. returns closest match
     app.post('/api/friends', function(req, res) {
-        // Our user is the data sent in the request.
+        // user is the data sent in the request.
         var thisUser = req.body;
         var differences = [];
 
-        // If there is more than one friend to compare to,
+        // check to see if there is more than one friend to compare to,
         if (friendData.length > 1) {
             // Step through these potential friends.
             friendData.forEach(function(user) {
